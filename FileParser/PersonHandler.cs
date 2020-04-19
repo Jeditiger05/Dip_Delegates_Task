@@ -21,8 +21,6 @@ namespace FileParser
         /// <param name="people"></param>
         public PersonHandler(List<List<string>> people)
         {
-            DataParser dp = new DataParser();
-
             People = new List<Person>();
 
             for (int i = 1; i < people.Count; i++)
@@ -34,13 +32,13 @@ namespace FileParser
 
             //People = People.OrderBy(p => p.Dob).ToList();
 
-            //var grouppedResult = People.GroupBy(x => x.Dob);
+            ////var grouppedResult = People.GroupBy(x => x.Dob);
 
-            //foreach (var pers in grouppedResult)
-            //{
-            //    Console.WriteLine(pers.Key);
-            //    Console.WriteLine(pers.Count());
-            //}
+            ////foreach (var pers in grouppedResult)
+            ////{
+            ////    Console.WriteLine(pers.Key);
+            ////    Console.WriteLine(pers.Count());
+            ////}
 
             //foreach (Person person in People)
             //{
