@@ -35,6 +35,7 @@ namespace FileParser
                 People.Add(new Person(Convert.ToInt32(people[i][0]), people[i][1].ToString(), people[i][2].ToString(), new DateTime(Convert.ToInt64(people[i][3]))));
             }
 
+            //Testing GitPush from laptop
             //Console.WriteLine(People.Count);
 
             //People = People.OrderBy(p => p.Dob).ToList();
