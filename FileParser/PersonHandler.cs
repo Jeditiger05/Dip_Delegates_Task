@@ -23,11 +23,6 @@ namespace FileParser
         {
             DataParser dp = new DataParser();
 
-            dp.StripWhiteSpace(people);
-            dp.StripQuotes(people);
-            //Question for Anh -- How to access RemoveHashes method without adding it to DataParser class?
-            dp.RemoveHashes(people);
-
             People = new List<Person>();
 
             for (int i = 1; i < people.Count; i++)

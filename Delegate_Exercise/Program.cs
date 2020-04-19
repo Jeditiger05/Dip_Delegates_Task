@@ -11,8 +11,10 @@ namespace Delegate_Exercise
     {
         static void Main(string[] args)
         {
-            string readFile = Directory.GetCurrentDirectory() + "/TempFiles/data.csv";
-            string writeFile = Directory.GetCurrentDirectory() + "/TempFiles/processed_data.csv";
+            //Console.WriteLine(System.IO.Path.GetFullPath(@"..\..\..\..\"));
+
+            string readFile = Path.GetFullPath(@"..\..\..\..\") + "/TempFiles/data.csv";
+            string writeFile = Path.GetFullPath(@"..\..\..\..\") + "/TempFiles/processed_data.csv";
             FileHandler fh = new FileHandler();
             DataParser dp = new DataParser();
             CsvHandler ch = new CsvHandler();
@@ -30,14 +32,12 @@ namespace Delegate_Exercise
             //parsee += CapData;
             //ch.ProcessCsvCap(readFile, writeFile, parsee.Invoke);
 
-            List<string> data = fh.ReadFile(readFile);
-            List<List<string>> parsedData = fh.ParseData(data, ',');
-            //dp.StripWhiteSpace(parsedData);
-            //dp.StripQuotes(parsedData);
-            //RemoveHashes(parsedData);
+            Console.WriteLine("TempFiles/processed_data.csv file created");
 
-            PersonHandler ph = new PersonHandler(parsedData);
+            //List<string> data = fh.ReadFile(Path.GetFullPath(@"..\..\..\..\") + "/TempFiles/processed_data.csv");
+            //List<List<string>> parsedData = fh.ParseData(data, ',');
 
+            //PersonHandler ph = new PersonHandler(parsedData);
         }
 
         public static List<List<string>> RemoveHashes(List<List<string>> data) {
