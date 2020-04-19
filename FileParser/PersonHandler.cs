@@ -35,7 +35,7 @@ namespace FileParser
                 People.Add(new Person(Convert.ToInt32(people[i][0]), people[i][1].ToString(), people[i][2].ToString(), new DateTime(Convert.ToInt64(people[i][3]))));
             }
 
-            Console.WriteLine(People.Count);
+            //Console.WriteLine(People.Count);
 
             //People = People.OrderBy(p => p.Dob).ToList();
 
