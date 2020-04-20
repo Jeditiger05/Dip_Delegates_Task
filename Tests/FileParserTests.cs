@@ -15,28 +15,30 @@ namespace FileParserTests
         private string _tsvPath = Path.GetFullPath(@"..\..\..\..\") + "/TempFiles/data.tsv";  // change to appropriate path
 
         private string _writeFile = Path.GetFullPath(@"..\..\..\..\") + "/TempFiles/dataWrite.txt";  // change to appropriate path
-       
+
         private List<List<string>> _data;
 
-        public FileParserTests() {
+        public FileParserTests()
+        {
             _fh = new FileHandler();
             _dp = new DataParser();
-            
+
             _data = new List<List<string>>();
-            
-            _data.Add(new List<string>() {"1", "John", "Smith"});
-            _data.Add(new List<string>() {"2", "Jane", "Jones"});
-            _data.Add(new List<string>() {"3", "Jill", "Rhodes"});
-            _data.Add(new List<string>() {"4", "Bill", "Holmes"});
-            _data.Add(new List<string>() {"5", "Peter", "Watson"});
-            _data.Add(new List<string>() {"\"6\"", "\"Ophelia\"", "\"Turing\""});
-            _data.Add(new List<string>() {"7", "Catherine", "Clark"});
-            _data.Add(new List<string>() {" 8", "    Wilfred     ", "Sutherland "});
-            _data.Add(new List<string>() {"9", "Rickgard", "Arthurs"});
+
+            _data.Add(new List<string>() { "1", "John", "Smith" });
+            _data.Add(new List<string>() { "2", "Jane", "Jones" });
+            _data.Add(new List<string>() { "3", "Jill", "Rhodes" });
+            _data.Add(new List<string>() { "4", "Bill", "Holmes" });
+            _data.Add(new List<string>() { "5", "Peter", "Watson" });
+            _data.Add(new List<string>() { "\"6\"", "\"Ophelia\"", "\"Turing\"" });
+            _data.Add(new List<string>() { "7", "Catherine", "Clark" });
+            _data.Add(new List<string>() { " 8", "    Wilfred     ", "Sutherland " });
+            _data.Add(new List<string>() { "9", "Rickgard", "Arthurs" });
         }
 
         [Fact]
-        public void ReadFileTest() {
+        public void ReadFileTest()
+        {
             var list = _fh.ReadFile(_csvPath);
 
             Assert.Equal(501, list.Count);
@@ -49,16 +51,17 @@ namespace FileParserTests
             Assert.Equal("YLU-423	Kia	Sephia	2001", list[735]);
             Assert.Equal("YTU-308	Lotus	Elise	2005", list[918]);
         }
-        
+
         [Fact]
-        public void ParseDataTest() {
+        public void ParseDataTest()
+        {
             var list = _fh.ReadFile(_csvPath);
             var data = _fh.ParseData(list, ',');
-            
+
             Assert.Equal(501, data.Count);
             Assert.Equal("\"#Dedrick\"", data[419][2]);
             Assert.Equal("\"#Silvester\"", data[231][1]);
-            
+
             list = _fh.ReadFile(_tsvPath);
             data = _fh.ParseData(list, '\t');
 
@@ -66,45 +69,49 @@ namespace FileParserTests
             Assert.Equal("YLU-423", data[735][0]);
             Assert.Equal("Elise", data[918][2]);
         }
-        
+
         [Fact]
-        public void ParseCsvTest() {
+        public void ParseCsvTest()
+        {
             var list = _fh.ReadFile(_csvPath);
             var data = _fh.ParseCsv(list);
-            
+
             Assert.Equal(501, data.Count);
             Assert.Equal("\"#Dedrick\"", data[419][2]);
             Assert.Equal("\"#Silvester\"", data[231][1]);
         }
 
         [Fact]
-        public void WriteFileTest() {
+        public void WriteFileTest()
+        {
             _fh.WriteFile(_writeFile, '*', _data);
 
             var data = _fh.ReadFile(_writeFile);
-            
+
             Assert.Equal("7*Catherine*Clark", data[6]);
 
         }
 
         [Fact]
-        public void StripWhiteSpaceTest() {
+        public void StripWhiteSpaceTest()
+        {
             var list = _dp.StripWhiteSpace(_data);
 
-            Assert.Equal("8", list[7][0]); 
+            Assert.Equal("8", list[7][0]);
             Assert.Equal("Wilfred", list[7][1]);
             Assert.Equal("Sutherland", list[7][2]);
 
-            
+
         }
-        
+
         [Fact]
-        public void StripQuotesTest() {
+        public void StripQuotesTest()
+        {
             var list = _dp.StripQuotes(_data);
 
-            Assert.Equal("6", list[5][0]); 
+            Assert.Equal("6", list[5][0]);
             Assert.Equal("Ophelia", list[5][1]);
-            Assert.Equal("Turing", list[5][2]);   
+            Assert.Equal("Turing", list[5][2]);
         }
     }
 }

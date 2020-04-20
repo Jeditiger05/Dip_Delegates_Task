@@ -27,7 +27,7 @@ namespace FileParser
                     {
                         lines.Add(sr.ReadLine());
                     }
-                }                    
+                }
             }
             catch (Exception exc)
             {

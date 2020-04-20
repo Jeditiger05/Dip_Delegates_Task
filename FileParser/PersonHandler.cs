@@ -4,11 +4,9 @@ using System.Data;
 using System.Linq;
 using Delegate_Exercise;
 using ObjectLibrary;
-using System.Globalization;
 
 namespace FileParser
 {
-
     //public class Person { }  // temp class delete this when Person is referenced from dll
 
     public class PersonHandler
@@ -27,26 +25,6 @@ namespace FileParser
             {
                 People.Add(new Person(Convert.ToInt32(people[i][0]), people[i][1].ToString(), people[i][2].ToString(), new DateTime(Convert.ToInt64(people[i][3]))));
             }
-
-            //Console.WriteLine(People.Count);
-
-            //People = People.OrderBy(p => p.Dob).ToList();
-
-            ////var grouppedResult = People.GroupBy(x => x.Dob);
-
-            ////foreach (var pers in grouppedResult)
-            ////{
-            ////    Console.WriteLine(pers.Key);
-            ////    Console.WriteLine(pers.Count());
-            ////}
-
-            //foreach (Person person in People)
-            //{
-            //    //Console.WriteLine($"\nIndex Of: {People.IndexOf(person)}\nID: {person.Id}\nFirst Name: {person.FirstName}\nLast Name: {person.Surname}\nDOB: {person.Dob.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)}");
-            //    //Console.WriteLine(person.Surname.FirstOrDefault());
-            //    Console.WriteLine(person.ToString());
-            //}
-            //Console.ReadLine();
         }
 
         /// <summary>
@@ -55,20 +33,18 @@ namespace FileParser
         /// <returns></returns>
         public List<Person> GetOldest()
         {
-            List<Person> Ordered = new List<Person>();
-            List<Person> Oldest = new List<Person>();
+            List<Person> ordered = People.OrderBy(p => p.Dob).ToList();
+            List<Person> oldest = new List<Person>();
 
-            Ordered = People.OrderBy(p => p.Dob).ToList();
-
-            foreach (Person person in Ordered)
+            foreach (Person person in ordered)
             {
-                if (Ordered[0].Dob.Equals(person.Dob))
+                if (ordered[0].Dob.Equals(person.Dob))
                 {
-                    Oldest.Add(person);
+                    oldest.Add(person);
                 }
             }
 
-            return Oldest; //-- return result here
+            return oldest; //-- return result here
         }
 
         /// <summary>
@@ -96,10 +72,10 @@ namespace FileParser
         {
             int count = 0;
 
-            foreach(Person person in People)
+            foreach (Person person in People)
             {
                 //caseSesitive parameter will ignore case if true using System.Globalization.CultureInfo
-                if (person.Surname.StartsWith(searchTerm, !caseSensitive, CultureInfo.InvariantCulture))
+                if (person.Surname.StartsWith(searchTerm, !caseSensitive, null))
                 {
                     count++;
                 }
@@ -115,12 +91,12 @@ namespace FileParser
         {
             List<string> result = new List<string>();
 
-            var groupedResult = People.OrderBy(p => p.Dob).ToList().GroupBy(x => x.Dob);
+            var groupedResult = People.OrderBy(p => p.Dob).ToList().GroupBy(p => p.Dob);
 
             foreach (var person in groupedResult)
             {
                 //Question for Anh -- Values are only seperated by space in Test not by Tab
-                result.Add($"{person.Key.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)} {person.Count()}");
+                result.Add($"{person.Key:dd/MM/yyyy} {person.Count()}");
             }
 
             return result;  //-- return result here
