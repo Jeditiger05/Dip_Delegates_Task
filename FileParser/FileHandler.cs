@@ -54,14 +54,12 @@ namespace FileParser
                     {
                         sw.WriteLine(string.Join(delimeter.ToString(), row));
                     }
-
                 }
             }
             catch (Exception exc)
             {
                 Console.WriteLine(exc.Message);
             }
-
         }
 
         /// <summary>

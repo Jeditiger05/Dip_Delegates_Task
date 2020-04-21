@@ -64,8 +64,8 @@ namespace Delegate_Exercise
 
                 }
             }
-            return data;
 
+            return data;
         }
 
         public static List<List<string>> CapData(List<List<string>> data)
@@ -77,6 +77,7 @@ namespace Delegate_Exercise
                     row[i] = row[i].ToUpper();
                 }
             }
+
             return data;
         }
     }
