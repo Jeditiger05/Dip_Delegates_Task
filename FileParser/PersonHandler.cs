@@ -74,7 +74,7 @@ namespace FileParser
 
             foreach (Person person in People)
             {
-                //caseSesitive parameter will ignore case if true using System.Globalization.CultureInfo
+                //caseSesitive parameter will ignore case if true
                 if (person.Surname.StartsWith(searchTerm, !caseSensitive, null))
                 {
                     count++;

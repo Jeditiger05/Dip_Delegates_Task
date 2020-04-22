@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using FileParser;
 
-public delegate List<List<string>> Parser(List<List<string>> data);
+//public delegate List<List<string>> Parser(List<List<string>> data);
 
 namespace Delegate_Exercise
 {
@@ -11,46 +11,49 @@ namespace Delegate_Exercise
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine(System.IO.Path.GetFullPath(@"..\..\..\..\"));
-
             string readFile = Path.GetFullPath(@"..\..\..\..\") + "/TempFiles/data.csv";
             string writeFile = Path.GetFullPath(@"..\..\..\..\") + "/TempFiles/processed_data.csv";
+            string writeFileCaps = Path.GetFullPath(@"..\..\..\..\") + "/TempFiles/processed_data_caps.csv";
+
             FileHandler fh = new FileHandler();
             DataParser dp = new DataParser();
             CsvHandler ch = new CsvHandler();
-            int choice = 0;
+            string choice = "";
 
-
-            while (choice != 3)
+            while (!choice.Equals("3"))
             {
                 Console.WriteLine("Select from the Following Options" +
-                "\n1. Process CSV\n2. Process CSV using Parser \n3. Exit\n" +
-                "\nNote the PersonHandler Tests will not pass with Option 2!");
+                "\n1. Process CSV\n2. Process CSV using Parser \n3. Exit");
 
                 Console.Write("Enter Choice:  ");
-                choice = Convert.ToInt32(Console.ReadLine());
+                choice = Console.ReadLine();
 
                 switch (choice)
                 {
-                    case 1://Process CSV
+                    case "1"://Process CSV
                         Func<List<List<string>>, List<List<string>>> dataHandler = dp.StripWhiteSpace;
                         dataHandler += dp.StripQuotes;
                         dataHandler += RemoveHashes;
                         ch.ProcessCsv(readFile, writeFile, dataHandler);
-                        Console.WriteLine("TempFiles/processed_data.csv file created");
+                        Console.WriteLine("\nTempFiles/processed_data.csv file created\n");
                         break;
-                    case 2://Process CSV and Capitalise all Data using Parser
+                    case "2"://Process CSV and Capitalise all Data using Parser
                         Parser parsee = dp.StripWhiteSpace;
                         parsee += dp.StripQuotes;
                         parsee += RemoveHashes;
                         parsee += CapData;
-                        ch.ProcessCsvCap(readFile, writeFile, parsee.Invoke);
-                        Console.WriteLine("TempFiles/processed_data.csv file created using Parser delegate");
+                        ch.ProcessCsvCap(readFile, writeFileCaps, parsee);
+                        Console.WriteLine("\nTempFiles/processed_data.csv file created using Parser delegate\n");
                         break;
-                    case 3:
+                    case "3"://Exits Program
+                        break;
+                    default:
+                        Console.WriteLine("\nInvalid Option\n");
                         break;
                 }
             }
+
+            Console.WriteLine("\nGood Bye");
         }
 
         public static List<List<string>> RemoveHashes(List<List<string>> data)
