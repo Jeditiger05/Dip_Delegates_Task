@@ -1,10 +1,8 @@
-using System;
-using Xunit;
-using ObjectLibrary;
 using FileParser;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
+using System.Linq;
+using Xunit;
 
 namespace PersonHandlerTests
 {

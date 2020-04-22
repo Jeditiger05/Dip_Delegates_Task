@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using FileParser;
 
-public delegate List<List<string>> Parser(List<List<string>> data);
-
-namespace Delegate_Exercise
+namespace FileParser
 {
+    public delegate List<List<string>> Parser(List<List<string>> data);
+
     public class CsvHandler
     {
         /// <summary>
@@ -25,12 +22,12 @@ namespace Delegate_Exercise
         }
 
         /// <summary>
-        /// Reads a csv file (readfile) and applies datahandling via Parser delegate and Capitalises all data
+        /// Reads a csv file (readfile) and applies datahandling via Parser delegate and writes result as csv to writeFile.
         /// </summary>
         /// <param name="readFile"></param>
         /// <param name="writeFile"></param>
         /// <param name="parsee"></param>
-        public void ProcessCsvCap(string readFile, string writeFile, Parser parsee)
+        public void ProcessCsv(string readFile, string writeFile, Parser parsee)
         {
             FileHandler fh = new FileHandler();
             char delimeter = ',';

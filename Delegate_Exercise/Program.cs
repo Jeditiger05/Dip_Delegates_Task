@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using FileParser;
 
-//public delegate List<List<string>> Parser(List<List<string>> data);
-
 namespace Delegate_Exercise
 {
     class Delegate_Exercise
@@ -42,7 +40,7 @@ namespace Delegate_Exercise
                         parsee += dp.StripQuotes;
                         parsee += RemoveHashes;
                         parsee += CapData;
-                        ch.ProcessCsvCap(readFile, writeFileCaps, parsee);
+                        ch.ProcessCsv(readFile, writeFileCaps, parsee);
                         Console.WriteLine("\nTempFiles/processed_data.csv file created using Parser delegate\n");
                         break;
                     case "3"://Exits Program
