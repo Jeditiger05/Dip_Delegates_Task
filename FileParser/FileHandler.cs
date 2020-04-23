@@ -18,19 +18,12 @@ namespace FileParser
         {
             List<string> lines = new List<string>();
 
-            try
+            using (StreamReader sr = new StreamReader(filePath))
             {
-                using (StreamReader sr = new StreamReader(filePath))
+                while (!sr.EndOfStream)
                 {
-                    while (!sr.EndOfStream)
-                    {
-                        lines.Add(sr.ReadLine());
-                    }
+                    lines.Add(sr.ReadLine());
                 }
-            }
-            catch (Exception exc)
-            {
-                Console.WriteLine(exc.Message);
             }
 
             return lines; //-- return result here
@@ -45,20 +38,14 @@ namespace FileParser
         /// <param name="rows"></param>
         public void WriteFile(string filePath, char delimeter, List<List<string>> rows)
         {
-            try
+            using (StreamWriter sw = new StreamWriter(filePath))
             {
-                using (StreamWriter sw = new StreamWriter(filePath))
+                foreach (List<string> row in rows)
                 {
-                    foreach (List<string> row in rows)
-                    {
-                        sw.WriteLine(string.Join(delimeter.ToString(), row));
-                    }
+                    sw.WriteLine(string.Join(delimeter.ToString(), row));
                 }
             }
-            catch (Exception exc)
-            {
-                Console.WriteLine(exc.Message);
-            }
+
         }
 
         /// <summary>

@@ -30,22 +30,39 @@ namespace Delegate_Exercise
                 switch (choice)
                 {
                     case "1"://Process CSV
-                        Func<List<List<string>>, List<List<string>>> dataHandler = dp.StripWhiteSpace;
-                        dataHandler += dp.StripQuotes;
-                        dataHandler += RemoveHashes;
-                        ch.ProcessCsv(readFile, writeFile, dataHandler);
-                        Console.WriteLine($"\n{writeFile} file created\n");
+                        try
+                        {
+                            Func<List<List<string>>, List<List<string>>> dataHandler = dp.StripWhiteSpace;
+                            dataHandler += dp.StripQuotes;
+                            dataHandler += RemoveHashes;
+                            ch.ProcessCsv(readFile, writeFile, dataHandler);
+                            Console.WriteLine($"\n{writeFile} file created\n");
+                        }
+                        catch (Exception exc)
+                        {
+                            Console.WriteLine($"\n{exc.Message}\n");
+                        }
                         break;
+
                     case "2"://Process CSV and Capitalise all Data using Parser
-                        Parser parsee = dp.StripWhiteSpace;
-                        parsee += dp.StripQuotes;
-                        parsee += RemoveHashes;
-                        parsee += CapData;
-                        ch.ProcessCsv(readFile, writeFile, parsee);
-                        Console.WriteLine($"\n{writeFile} file created using Parser Type\n");
+                        try
+                        {
+                            Parser parsee = dp.StripWhiteSpace;
+                            parsee += dp.StripQuotes;
+                            parsee += RemoveHashes;
+                            parsee += CapData;
+                            ch.ProcessCsv(readFile, writeFile, parsee);
+                            Console.WriteLine($"\n{writeFile} file created using Parser Type\n");
+                        }
+                        catch (Exception exc)
+                        {
+                            Console.WriteLine($"\n{exc.Message}\n");
+                        }
                         break;
+
                     case "3"://Exits Program
                         break;
+
                     default:
                         Console.WriteLine("\nInvalid Option\n");
                         break;
