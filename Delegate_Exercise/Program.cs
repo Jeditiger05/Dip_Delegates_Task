@@ -9,9 +9,9 @@ namespace Delegate_Exercise
     {
         static void Main(string[] args)
         {
-            string readFile = Path.GetFullPath(@"..\..\..\..\") + "/TempFiles/data.csv";
-            string writeFile = Path.GetFullPath(@"..\..\..\..\") + "/TempFiles/processed_data.csv";
-            string writeFileCaps = Path.GetFullPath(@"..\..\..\..\") + "/TempFiles/processed_data_caps.csv";
+            string projectPath = Path.GetFullPath(@"..\..\..\..\");
+            string readFile = $"{projectPath}TempFiles\\data.csv";
+            string writeFile = $"{projectPath}TempFiles\\processed_data.csv";
 
             FileHandler fh = new FileHandler();
             DataParser dp = new DataParser();
@@ -21,7 +21,8 @@ namespace Delegate_Exercise
             while (!choice.Equals("3"))
             {
                 Console.WriteLine("Select from the Following Options" +
-                "\n1. Process CSV\n2. Process CSV using Parser \n3. Exit");
+                "\n1. Process CSV\n2. Process CSV using Parser \n3. Exit" +
+                "\nNote Only Option 1 is formmated correctly to Pass all Tests");
 
                 Console.Write("Enter Choice:  ");
                 choice = Console.ReadLine();
@@ -33,15 +34,15 @@ namespace Delegate_Exercise
                         dataHandler += dp.StripQuotes;
                         dataHandler += RemoveHashes;
                         ch.ProcessCsv(readFile, writeFile, dataHandler);
-                        Console.WriteLine("\nTempFiles/processed_data.csv file created\n");
+                        Console.WriteLine($"\n{projectPath}TempFiles\\processed_data.csv file created\n");
                         break;
                     case "2"://Process CSV and Capitalise all Data using Parser
                         Parser parsee = dp.StripWhiteSpace;
                         parsee += dp.StripQuotes;
                         parsee += RemoveHashes;
                         parsee += CapData;
-                        ch.ProcessCsv(readFile, writeFileCaps, parsee);
-                        Console.WriteLine("\nTempFiles/processed_data.csv file created using Parser delegate\n");
+                        ch.ProcessCsv(readFile, writeFile, parsee);
+                        Console.WriteLine($"\n{projectPath}TempFiles\\processed_data.csv file created using Parser Type\n");
                         break;
                     case "3"://Exits Program
                         break;

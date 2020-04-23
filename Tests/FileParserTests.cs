@@ -8,13 +8,12 @@ namespace FileParserTests
 {
     public class FileParserTests
     {
-
         private FileHandler _fh;
         private DataParser _dp;
-        private string _csvPath = Path.GetFullPath(@"..\..\..\..\") + "/TempFiles/data.csv";  // change to appropriate path
-        private string _tsvPath = Path.GetFullPath(@"..\..\..\..\") + "/TempFiles/data.tsv";  // change to appropriate path
+        private string _csvPath = $"{Path.GetFullPath(@"..\..\..\..\")}TempFiles\\data.csv"; // change to appropriate path
+        private string _tsvPath = $"{Path.GetFullPath(@"..\..\..\..\")}TempFiles\\data.tsv"; // change to appropriate path
 
-        private string _writeFile = Path.GetFullPath(@"..\..\..\..\") + "/TempFiles/dataWrite.txt";  // change to appropriate path
+        private string _writeFile = $"{Path.GetFullPath(@"..\..\..\..\")}TempFiles\\dataWrite.txt"; // change to appropriate path
 
         private List<List<string>> _data;
 
