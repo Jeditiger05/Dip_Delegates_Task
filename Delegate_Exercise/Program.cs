@@ -34,7 +34,7 @@ namespace Delegate_Exercise
                         dataHandler += dp.StripQuotes;
                         dataHandler += RemoveHashes;
                         ch.ProcessCsv(readFile, writeFile, dataHandler);
-                        Console.WriteLine($"\n{projectPath}TempFiles\\processed_data.csv file created\n");
+                        Console.WriteLine($"\n{writeFile} file created\n");
                         break;
                     case "2"://Process CSV and Capitalise all Data using Parser
                         Parser parsee = dp.StripWhiteSpace;
@@ -42,7 +42,7 @@ namespace Delegate_Exercise
                         parsee += RemoveHashes;
                         parsee += CapData;
                         ch.ProcessCsv(readFile, writeFile, parsee);
-                        Console.WriteLine($"\n{projectPath}TempFiles\\processed_data.csv file created using Parser Type\n");
+                        Console.WriteLine($"\n{writeFile} file created using Parser Type\n");
                         break;
                     case "3"://Exits Program
                         break;
