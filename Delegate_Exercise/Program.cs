@@ -13,7 +13,6 @@ namespace Delegate_Exercise
             string readFile = $"{projectPath}TempFiles\\data.csv";
             string writeFile = $"{projectPath}TempFiles\\processed_data.csv";
 
-            FileHandler fh = new FileHandler();
             DataParser dp = new DataParser();
             CsvHandler ch = new CsvHandler();
             string choice = "";
@@ -27,46 +26,44 @@ namespace Delegate_Exercise
                 Console.Write("Enter Choice:  ");
                 choice = Console.ReadLine();
 
-                switch (choice)
+                try
                 {
-                    case "1"://Process CSV
-                        try
-                        {
+                    switch (choice)
+                    {
+                        case "1"://Process CSV
+
                             Func<List<List<string>>, List<List<string>>> dataHandler = dp.StripWhiteSpace;
                             dataHandler += dp.StripQuotes;
                             dataHandler += RemoveHashes;
                             ch.ProcessCsv(readFile, writeFile, dataHandler);
                             Console.WriteLine($"\n{writeFile} file created\n");
-                        }
-                        catch (Exception exc)
-                        {
-                            Console.WriteLine($"\n{exc.Message}\n");
-                        }
-                        break;
+                            break;
 
-                    case "2"://Process CSV and Capitalise all Data using Parser
-                        try
-                        {
+                        case "2"://Process CSV and Capitalise all Data using Parser
+
                             Parser parsee = dp.StripWhiteSpace;
                             parsee += dp.StripQuotes;
                             parsee += RemoveHashes;
                             parsee += CapData;
                             ch.ProcessCsv(readFile, writeFile, parsee);
                             Console.WriteLine($"\n{writeFile} file created using Parser Type\n");
-                        }
-                        catch (Exception exc)
-                        {
-                            Console.WriteLine($"\n{exc.Message}\n");
-                        }
-                        break;
 
-                    case "3"://Exits Program
-                        break;
+                            break;
 
-                    default:
-                        Console.WriteLine("\nInvalid Option\n");
-                        break;
+                        case "3"://Exits Program
+                            break;
+
+                        default:
+                            Console.WriteLine("\nInvalid Option\n");
+                            break;
+                    }
                 }
+                catch (Exception exc)
+                {
+                    Console.WriteLine($"\n{exc.Message}\n");
+                }
+
+
             }
 
             Console.WriteLine("\nGood Bye");

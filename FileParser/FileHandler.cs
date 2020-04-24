@@ -29,7 +29,6 @@ namespace FileParser
             return lines; //-- return result here
         }
 
-
         /// <summary>
         /// Takes a list of a list of data.  Writes to file, using delimeter to seperate data.  Always overwrites.
         /// </summary>
@@ -45,7 +44,6 @@ namespace FileParser
                     sw.WriteLine(string.Join(delimeter.ToString(), row));
                 }
             }
-
         }
 
         /// <summary>

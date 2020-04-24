@@ -50,7 +50,7 @@ namespace FileParser
         /// <returns></returns>
         public string GetString(int id)
         {
-            return People[id].ToString();  //-- return result here
+            return People.Where(p => p.Id == id).First().ToString();
         }
 
         public List<Person> GetOrderBySurname()

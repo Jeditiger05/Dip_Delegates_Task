@@ -61,6 +61,10 @@ namespace PersonHandlerTests
             expected = "Elianore Wyley 10/11/2017";
             result = ph.People[84].ToString();
             Assert.Equal(expected, result);
+
+            //Question for Anh - Not using GetSTring Method to test?
+            //result = ph.GetString(85);
+            //Assert.Equal(expected, result);
         }
 
         [Fact]
