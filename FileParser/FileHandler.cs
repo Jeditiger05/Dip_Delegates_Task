@@ -55,17 +55,10 @@ namespace FileParser
         public List<List<string>> ParseData(List<string> data, char delimiter)
         {
             List<List<string>> result = new List<List<string>>();
-            string[] split;
 
-            foreach (string line in data)
+            for (int i = 0; i < data.Count; i++)
             {
-                result.Add(new List<string>());
-                split = line.Split(delimiter);
-
-                foreach (string str in split)
-                {
-                    result[result.Count - 1].Add(str);
-                }
+                result.Add(new List<string>(data[i].Split(delimiter)));
             }
 
             return result; //-- return result here
@@ -78,21 +71,14 @@ namespace FileParser
         /// <returns></returns>
         public List<List<string>> ParseCsv(List<string> data)
         {
-            List<List<string>> newList = new List<List<string>>();
-            string[] split;
+            List<List<string>> result = new List<List<string>>();
 
-            foreach (string line in data)
+            for (int i = 0; i < data.Count; i++)
             {
-                newList.Add(new List<string>());
-                split = line.Split(',');
-
-                foreach (string str in split)
-                {
-                    newList[newList.Count - 1].Add(str);
-                }
+                result.Add(new List<string>(data[i].Split(',')));
             }
 
-            return newList;  //-- return result here
+            return result; //-- return result here
         }
     }
 }
