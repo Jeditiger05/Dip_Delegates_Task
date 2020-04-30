@@ -21,7 +21,7 @@ namespace Delegate_Exercise
             {
                 Console.WriteLine("Select from the Following Options" +
                 "\n1. Process CSV\n2. Process CSV using Parser \n3. Exit" +
-                "\nNote Only Option 1 is formmated correctly to Pass all Tests");
+                "\nNote Only Option 1 is formatted correctly to Pass all Tests");
 
                 Console.Write("Enter Choice:  ");
                 choice = Console.ReadLine();
