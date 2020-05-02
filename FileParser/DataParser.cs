@@ -33,7 +33,7 @@ namespace FileParser
             {
                 for (int i = 0; i < row.Count; i++)
                 {
-                    row[i] = row[i].Replace('"', ' ').Trim(); ;
+                    row[i] = row[i].Replace('"', ' ').Trim();
                 }
             }
 
